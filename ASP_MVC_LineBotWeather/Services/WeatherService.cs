@@ -37,13 +37,13 @@ namespace ASP_MVC_LineBotWeather.Services
                 if (checker == County.Count())
                 {
                     string msg = "搜尋縣市不存在" +
-                        "\n臺灣各縣市如下：";
+                        "\n\n臺灣各縣市如下：";
                     for(int j = 0; j < County.Length; j++)
                     {
-                        msg = "\n" + County[j].ToString();
+                        msg += "\n" + County[j].ToString();
                     }
                     result.Add("Status", false);
-                    result.Add("Msg", "");
+                    result.Add("Msg", msg);
                 }
             }
             else

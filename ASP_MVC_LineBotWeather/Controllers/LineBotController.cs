@@ -102,7 +102,8 @@ namespace ASP_MVC_LineBotWeather.Controllers
                     {
                         erroeMsg = checkResult["Msg"].ToString() + 
                             "\n若要查詢氣象資訊請輸入" +
-                            "\n『天氣 縣市名稱』，例如：天氣 臺中市";
+                            "\n『天氣 縣市名稱』" +
+                            "\n例如：天氣 臺中市";
                     }
                     else
                     {
