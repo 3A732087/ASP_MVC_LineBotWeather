@@ -87,9 +87,8 @@ namespace ASP_MVC_LineBotWeather.Controllers
                                 for (int j = 0; j < res.Count(); j += 4)
                                 {
                                     title = locationName + "未來36小時天氣預報";
-                                    //title = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm");
-                                    content = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm") + "\n" + "天氣狀況" + res[j].parameter.parameterName +"\n" + "溫度" + res[j + 2].parameter.parameterName + " ~ " + res[j + 3].parameter.parameterName + "°C" +
-                                        " \n" + "降雨機率" + res[j + 1].parameter.parameterName + "%";
+                                    content = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm") + "\n" + "天氣狀況\t" + res[j].parameter.parameterName +"\n" + "溫度\t" + res[j + 2].parameter.parameterName + " ~ " + res[j + 3].parameter.parameterName + "°C" +
+                                        " \n" + "降雨機率\t" + res[j + 1].parameter.parameterName + "%";
 
                                     Columns = new Column { thumbnailImageUrl = MessageImg, title = title, text = content, actions = actions };
                                     carouselTemplate.columns.Add(Columns);
