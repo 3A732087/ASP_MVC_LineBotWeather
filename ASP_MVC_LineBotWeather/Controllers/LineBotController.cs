@@ -39,7 +39,7 @@ namespace ASP_MVC_LineBotWeather.Controllers
                     {
                         string JsonStr = "";
                         string locationName = checkResult["SearchData"].ToString();
-                        string Url = $"https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization={WeatherAPI}&format=JSON&locationName={locationName}&elementName=MinT,MaxT,PoP";
+                        string Url = $"https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization={WeatherAPI}&format=JSON&locationName={locationName}&elementName=Wx,MinT,MaxT,PoP";
 
                         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
                         request.Method = "GET";
@@ -70,7 +70,7 @@ namespace ASP_MVC_LineBotWeather.Controllers
                                     }
                                 }
 
-                                //順序：降雨機率、最低溫、最高溫
+                                //寫入順序：天氣現象、降雨機率、最低溫、最高溫
                                 Uri MessageImg = new Uri("圖片網址");
 
                                 Column Columns = new Column();
@@ -84,11 +84,12 @@ namespace ASP_MVC_LineBotWeather.Controllers
                                 actions.Add(new isRock.LineBot.UriAction() { label = "詳細內容", uri = new Uri("https://www.cwb.gov.tw/V8/C/W/County/index.html") });
 
 
-                                for (int j = 0; j < res.Count(); j += 3)
+                                for (int j = 0; j < res.Count(); j += 4)
                                 {
-                                    title = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm");
-                                    content = "溫度" + res[j + 1].parameter.parameterName + " ~ " + res[j + 2].parameter.parameterName + "°C" +
-                                        " \n" + "降雨機率" + res[j].parameter.parameterName + "%";
+                                    title = locationName + "未來36小時天氣預報";
+                                    //title = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm");
+                                    content = Convert.ToDateTime(res[j].startTime).ToString("MM-dd HH:mm") + " ~ " + Convert.ToDateTime(res[j].endTime).ToString("MM-dd HH:mm") + "\n" + "天氣狀況" + res[j].parameter.parameterName +"\n" + "溫度" + res[j + 2].parameter.parameterName + " ~ " + res[j + 3].parameter.parameterName + "°C" +
+                                        " \n" + "降雨機率" + res[j + 1].parameter.parameterName + "%";
 
                                     Columns = new Column { thumbnailImageUrl = MessageImg, title = title, text = content, actions = actions };
                                     carouselTemplate.columns.Add(Columns);
