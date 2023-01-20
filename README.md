@@ -5,4 +5,7 @@
 * LineBotSDK
 
 ### 查詢畫面
-![](https://i.imgur.com/HF9nP1c.jpg)
+![](https://i.imgur.com/Kg8anSl.jpg)
+
+### 官方QR code
+![](https://imgur.com/ZNX8Caq.jpg)
